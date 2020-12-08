@@ -1,0 +1,16 @@
+{% extends "adminBase.html" %}
+{% block content %}
+    <title>회원 분석</title>
+		  <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="p-4 pr-5 border-bottom bg-light d-flex justify-content-between">
+                    <h4 class="card-title mb-0">회원 성비</h4>
+                    <id id="pie-chart-legend" class="mr-4"></id>
+                  </div>
+                  <div class="card-body d-flex">
+                    <canvas class="my-auto" id="pieChart" height="130"></canvas>
+                  </div>
+                </div>
+              </div>
+		  </div>
+{% endblock content %}

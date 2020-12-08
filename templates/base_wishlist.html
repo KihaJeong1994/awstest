@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+{% load static %}
+{% static "" as baseUrl %}
+<html>
+	<head>
+		<title>StarTrip</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{baseUrl}}/assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="main" class="logo"><strong>StarTrip</strong> &nbsp;&nbsp;&nbsp;Start Your Trip</a>
+										<div class="test">
+                                    			 {% if 'user_id' in request.session %}
+                                                <li>{{request.session.user_name}}님 반갑습니다.</li>
+                                                <li><a href="logout">로그아웃</a></li>
+
+                                                {% elif 'admin_id' in request.session %}
+                                                <li>{{request.session.admin_name}}님 반갑습니다.</li>
+                                                <li><a href="adminLogout">로그아웃</a></li>
+                                                <li><a href="admingo">상품관리</a></li>
+
+                                                {% else %}
+                                                <li><a href="loginform">로그인 하러 가기</a></li>
+                                                {% endif %}
+										</div>
+								</header>
+
+							<!-- Banner -->
+								<section id="banner">
+									<div class="content">
+										{% block content %}
+										{% endblock content %}
+									</div>
+								</section>
+
+							<!-- Section -->
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>SerVice</h2>
+									</header>
+									<div class="posts">
+										<article>
+											<a href="#" class="image"><img src="{{baseUrl}}/assets/img/map.jpg" alt="" /></a>
+											<h3>주변 검색</h3>
+											<p>GPS 기반의 주변의 명소 알아보기!</p>
+											<ul class="actions">
+												<li><a href="map" class="button">검색 하기</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="reviewmain" class="image"><img src="{{baseUrl}}/assets/img/rev.jpg" alt="" /></a>
+											<h3>게시판</h3>
+											<p>후기를 남겨 추억을 간직하세요!</p>
+											<ul class="actions">
+												<li><a href="reviewmain" class="button">작성 하기</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="seoul" class="image"><img src="{{baseUrl}}/assets/img/loc.jpg" alt="" /></a>
+											<h3>지역 정보</h3>
+											<p>전국의 여행지의 정보를 제공해드립니다!</p>
+											<ul class="actions">
+												<li><a href="seoul" class="button">More</a></li>
+											</ul>
+										</article>
+									</div>
+								</section>
+
+						</div>
+					</div>
+
+			 <!-- Sidebar -->
+               <div id="sidebar">
+                  <div class="inner">
+                     <!-- Menu -->
+                        <nav id="menu">
+                           <header class="major">
+                              <h2>Menu</h2>
+                           </header>
+                           <ul>
+                              <li><a href="main">Home</a></li>
+                              <li><a href="survey">설문조사</a></li>
+                              <li>
+                                 <span class="opener">회원가입/로그인</span>
+                            <ul>
+                            
+                             <li><a href="logout">로그아웃</a></li>
+                          
+							 <li><a href="tripmember">회원가입</a></li>
+							 <li><a href="tripmemberlist">회원리스트</a></li>
+                             <li><a href="login">로그인</a></li>
+									
+                                 </ul>
+                              </li>
+
+                              <li>
+                                 <span class="opener">국내 여행지</span>
+                                 <ul>
+                                    <li><a href="seoul">서울</a></li>
+                                    <li><a href="incheon">인천</a></li>
+                                    <li><a href="dajeon">대전</a></li>
+                                    <li><a href="dague">대구</a></li>
+                                    <li><a href="gwangju">광주</a></li>
+                                    <li><a href="busan">부산</a></li>
+                                    <li><a href="ulsan">울산</a></li>
+                                    <li><a href="sejong">세종</a></li>
+                                    <li><a href="gyunggi">경기</a></li>
+                                    <li><a href="gangwon">강원</a></li>
+                                 </ul>
+                              </li>
+                              <li><a href="map">주변 검색</a></li>
+                              <li>
+                                 <span class="opener">게시판</span>
+                                 <ul>
+                                    <li><a href="reviewmain">후기 게시판</a></li>
+                                    <li><a href="reviewwrite">게시글 작성하기</a></li>
+                                 </ul>
+                              </li>
+
+                           </ul>
+                        </nav>
+
+                     <!-- Section -->
+
+
+                     <!-- Footer -->
+                        <footer id="footer"></footer>
+
+                  </div>
+               </div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{{baseUrl}}/assets/js/jquery.min.js"></script>
+			<script src="{{baseUrl}}/assets/js/browser.min.js"></script>
+			<script src="{{baseUrl}}/assets/js/breakpoints.min.js"></script>
+			<script src="{{baseUrl}}/assets/js/util.js"></script>
+			<script src="{{baseUrl}}/assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+{% load static %}
+{% static "" as baseUrl %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>메인</title>
+      <!-- plugins:css -->
+
+
+    <link rel="stylesheet" href="{{baseUrl}}/assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="{{baseUrl}}/assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
+    <link rel="stylesheet" href="{{baseUrl}}/assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="{{baseUrl}}/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="{{baseUrl}}/assets/vendors/css/vendor.bundle.addons.css">
+      <!-- endinject -->
+      <!-- plugin css for this page -->
+      <!-- End plugin css for this page -->
+      <!-- inject:css -->
+      <link rel="stylesheet" href="{{baseUrl}}/assets/css/shared/style.css">
+      <!-- endinject -->
+      <!-- Layout styles -->
+      <link rel="stylesheet" href="{{baseUrl}}/assets/css/demo_1/style.css">
+      <!-- End Layout styles -->
+      <link rel="shortcut icon" href="{{baseUrl}}/assets/images/favicon.ico" />
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+          <a class="navbar-brand" href="index">ting</a>
+          <a class="navbar-brand brand-logo-mini" href="index">
+            <img src="{{baseUrl}}/assets/images/logo-mini.svg" alt="logo" /> </a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center">
+
+          <form class="ml-auto search-form d-none d-md-block" action="#">
+            <div class="form-group">
+              <input type="search" class="form-control" placeholder="Search Here">
+            </div>
+          </form>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link count-indicator" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                <i class="mdi mdi-bell-outline"></i>
+                <span class="count">7</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="messageDropdown">
+                <a class="dropdown-item py-3">
+                  <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
+                  <span class="badge badge-pill badge-primary float-right">View all</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <img src="{{baseUrl}}/assets/images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
+                  </div>
+                  <div class="preview-item-content flex-grow py-2">
+                    <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
+                    <p class="font-weight-light small-text"> The meeting is cancelled </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <img src="{{baseUrl}}/assets/images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
+                  </div>
+                  <div class="preview-item-content flex-grow py-2">
+                    <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
+                    <p class="font-weight-light small-text"> The meeting is cancelled </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <img src="{{baseUrl}}/assets/images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
+                  </div>
+                  <div class="preview-item-content flex-grow py-2">
+                    <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
+                    <p class="font-weight-light small-text"> The meeting is cancelled </p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-toggle="dropdown">
+                <i class="mdi mdi-email-outline"></i>
+                <span class="count bg-success">3</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
+                <a class="dropdown-item py-3 border-bottom">
+                  <p class="mb-0 font-weight-medium float-left">You have 4 new notifications </p>
+                  <span class="badge badge-pill badge-primary float-right">View all</span>
+                </a>
+                <a class="dropdown-item preview-item py-3">
+                  <div class="preview-thumbnail">
+                    <i class="mdi mdi-alert m-auto text-primary"></i>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal text-dark mb-1">Application Error</h6>
+                    <p class="font-weight-light small-text mb-0"> Just now </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item py-3">
+                  <div class="preview-thumbnail">
+                    <i class="mdi mdi-settings m-auto text-primary"></i>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal text-dark mb-1">Settings</h6>
+                    <p class="font-weight-light small-text mb-0"> Private message </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item py-3">
+                  <div class="preview-thumbnail">
+                    <i class="mdi mdi-airballoon m-auto text-primary"></i>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal text-dark mb-1">New user registration</h6>
+                    <p class="font-weight-light small-text mb-0"> 2 days ago </p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
+              <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                <img class="img-xs rounded-circle" src="{{baseUrl}}/assets/images/faces/face8.jpg" alt="Profile image"> </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                <div class="dropdown-header text-center">
+                  <img class="img-md rounded-circle" src="{{baseUrl}}/assets/images/faces/face8.jpg" alt="Profile image">
+                  <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
+                  <p class="font-weight-light text-muted mb-0">allenmoreno@gmail.com</p>
+                </div>
+                <a class="dropdown-item">My Profile <span class="badge badge-pill badge-danger">1</span><i class="dropdown-item-icon ti-dashboard"></i></a>
+                <a class="dropdown-item">Messages<i class="dropdown-item-icon ti-comment-alt"></i></a>
+                <a class="dropdown-item">Activity<i class="dropdown-item-icon ti-location-arrow"></i></a>
+                <a class="dropdown-item">FAQ<i class="dropdown-item-icon ti-help-alt"></i></a>
+                <a class="dropdown-item">Sign Out<i class="dropdown-item-icon ti-power-off"></i></a>
+              </div>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item nav-profile">
+              <a href="#" class="nav-link">
+                <div class="profile-image">
+                  <img class="img-xs rounded-circle" src="{{baseUrl}}/assets/images/faces/face8.jpg" alt="profile image">
+                  <div class="dot-indicator bg-success"></div>
+                </div>
+                <div class="text-wrapper">
+                  <p class="profile-name">Allen Moreno</p>
+                  <p class="designation">Premium user</p>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item nav-category">Main Menu</li>
+            <li class="nav-item">
+              <a class="nav-link" href="index">
+                <i class="menu-icon typcn typcn-document-text"></i>
+                <span class="menu-title">메인</span>
+              </a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic1">
+                <i class="menu-icon typcn typcn-coffee"></i>
+                <span class="menu-title">분석</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic1">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="Analysis_1_inflow">유입분석</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Analysis_2_properties">특징별분석</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Analysis_3_match">매칭분석</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Analysis_4_customer">회원분석</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Analysis_5_complain">신고분석</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
+                <i class="menu-icon typcn typcn-coffee"></i>
+                <span class="menu-title">회원 관리</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic2">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="Client_0_list">회원리스트</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Client_2_blacklist">블랙리스트</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic3" aria-expanded="false" aria-controls="ui-basic3">
+                <i class="menu-icon typcn typcn-coffee"></i>
+                <span class="menu-title">문의 관리</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic3">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="Ask_0_list">문의 리스트</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic4" aria-expanded="false" aria-controls="ui-basic4">
+                <i class="menu-icon typcn typcn-coffee"></i>
+                <span class="menu-title">신고 관리</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic4">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="Complain_1_chatlist">채팅 신고</a>
+                  </li>
+				  <li class="nav-item">
+                    <a class="nav-link" href="Complain_2_tingtodaylist">팅투데이 신고</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic5" aria-expanded="false" aria-controls="ui-basic5">
+                <i class="menu-icon typcn typcn-coffee"></i>
+                <span class="menu-title">결제 관리</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic5">
+                <ul class="nav flex-column sub-menu">
+				  <li class="nav-item">
+                    <a class="nav-link" href="Pay_0_list">결제 정보 리스트</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Pay_1_basic_report">간단 매출 장부</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic6" aria-expanded="false" aria-controls="ui-basic6">
+                <i class="menu-icon typcn typcn-coffee"></i>
+                <span class="menu-title">게시판 관리</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic6">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="Board_0_list">팅투데이 리스트</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic7" aria-expanded="false" aria-controls="ui-basic7">
+                <i class="menu-icon typcn typcn-coffee"></i>
+                <span class="menu-title">공지 관리</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic7">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="Notice_1_board">게시판 공지</a>
+                  </li>
+				  <li class="nav-item">
+                    <a class="nav-link" href="Notice_2_chat">채팅 공지</a>
+                  </li>
+				  <li class="nav-item">
+                    <a class="nav-link" href="Notice_3_client">회원 별 공지</a>
+                  </li>
+
+                </ul>
+              </div>
+            </li>
+
+
+          </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <!-- Page Title Header Starts-->
+            <div class="row page-title-header">
+              <div class="col-12">
+                <div class="page-header">
+                  <h4 class="page-title">Dashboard</h4>
+                  <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+
+                    <ul class="quick-links ml-auto">
+                      <li><a href="#">Settings</a></li>
+                      <li><a href="#">Analytics</a></li>
+                      <li><a href="#">Watchlist</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="page-header-toolbar">
+                  <div class="btn-group toolbar-item" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary"><i class="mdi mdi-chevron-left"></i></button>
+                    <button type="button" class="btn btn-secondary">03/02/2019 - 20/08/2019</button>
+                    <button type="button" class="btn btn-secondary"><i class="mdi mdi-chevron-right"></i></button>
+                  </div>
+                  <div class="filter-wrapper">
+                    <div class="dropdown toolbar-item">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownsorting" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Day</button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownsorting">
+                        <a class="dropdown-item" href="#">Last Day</a>
+                        <a class="dropdown-item" href="#">Last Month</a>
+                        <a class="dropdown-item" href="#">Last Year</a>
+                      </div>
+                    </div>
+                    <a href="#" class="advanced-link toolbar-item">Advanced Options</a>
+                  </div>
+                  <div class="sort-wrapper">
+                    <button type="button" class="btn btn-primary toolbar-item">New</button>
+                    <div class="dropdown ml-lg-auto ml-3 toolbar-item">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownexport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Export</button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownexport">
+                        <a class="dropdown-item" href="#">Export as PDF</a>
+                        <a class="dropdown-item" href="#">Export as DOCX</a>
+                        <a class="dropdown-item" href="#">Export as CDR</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Page Title Header Ends-->
+
+										{% block content %}
+										{% endblock content %}
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="container-fluid clearfix">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+
+
+    <script src="{{baseUrl}}/assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="{{baseUrl}}/assets/vendors/js/vendor.bundle.addons.js"></script>
+
+
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="{{baseUrl}}/assets/js/shared/chart.js"></script>
+    <script src="{{baseUrl}}/assets/js/shared/off-canvas.js"></script>
+    <script src="{{baseUrl}}/assets/js/shared/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+  <script src="{{baseUrl}}/assets/js/demo_1/dashboard.js"></script>
+    <!-- End custom js for this page-->
+  </body>
+</html>
