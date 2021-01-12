@@ -1,0 +1,27 @@
+{% extends "adminBase.html" %}
+{% block content %}
+<div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">답변 작성</h4>
+                  <div class="card-body">
+                    <form class="forms-sample" action="insertreply" method="post">
+                      {% csrf_token %}
+                      <div class="form-group">
+                        <label for="exampleInputName1">계정</label>
+                        <input type="text" class="form-control" name="email" id="exampleInputName1" value="{{email}}">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleTextarea1">답변</label>
+                        <textarea class="form-control" name="reply" id="exampleTextarea1" rows="2"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-success mr-2">답변 작성 완료</button>
+                    </form>
+                  </div>
+
+                </div>
+               </div>
+            </div>
+          </div>
+{% endblock content %}

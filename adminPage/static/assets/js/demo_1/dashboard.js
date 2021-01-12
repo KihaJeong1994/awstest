@@ -45,14 +45,14 @@
       var areaData = {
         labels: ["Jan 1", "Jan 7", "Jan 14", "Jan 21", "Jan 28", "Feb 4", "Feb 11", "Feb 18"],
         datasets: [{
-          label: 'Revenue',
-          data: data_1_1,
+          label: '이번 주 매출 추이',
+          data: daysales_all,
           borderColor: infoColor,
           backgroundColor: gradientStrokeFill_1,
           borderWidth: 2
         }, {
-          label: 'Sales',
-          data: data_1_2,
+          label: '지난 주 매출 추이',
+          data: Lastweekdaysales_all,
           borderColor: successColor,
           backgroundColor: gradientStrokeFill_2,
           borderWidth: 2
@@ -108,9 +108,9 @@
           }],
           yAxes: [{
             ticks: {
-              max: 200,
-              min: 0,
-              stepSize: 50,
+              max: Math.max.apply(null,daysales_all.concat(Lastweekdaysales_all)),
+              min: Math.min.apply(null,daysales_all.concat(Lastweekdaysales_all)),
+              stepSize: 10000,
               fontColor: "#858585",
               beginAtZero: false
             },
@@ -905,7 +905,7 @@
           labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", "Day 11", "Day 12", "Day 13"],
           datasets: [{
             label: 'Profit',
-            data: [7, 6, 9, 7, 8, 6, 8, 5, 7, 8, 6, 7, 7],
+            data: dayloginusercnt_all,
             borderColor: '#6d7cfc',
             backgroundColor: gradientStrokeFill_1,
             borderWidth: 3,
@@ -916,6 +916,7 @@
       });
     }
     if ($('#stats-line-graph-2').length) {
+
       var lineChartCanvas = $("#stats-line-graph-2").get(0).getContext("2d");
       var gradientStrokeFill_1 = lineChartCanvas.createLinearGradient(0, 0, 0, 50);
       gradientStrokeFill_1.addColorStop(0, 'rgba(131, 144, 255, 0.5)');
@@ -926,7 +927,7 @@
           labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", "Day 11", "Day 12", "Day 13"],
           datasets: [{
             label: 'Profit',
-            data: [7, 6, 8, 5, 7, 8, 6, 7, 7, 6, 9, 7, 8],
+            data: daysales_all,
             borderColor: '#6d7cfc',
             backgroundColor: gradientStrokeFill_1,
             borderWidth: 3,
@@ -947,7 +948,7 @@
           labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", "Day 11", "Day 12", "Day 13"],
           datasets: [{
             label: 'Profit',
-            data: [8, 6, 7, 8, 5, 7, 9, 7, 8, 7, 6, 7, 6],
+            data: daysignup_all,
             borderColor: '#6d7cfc',
             backgroundColor: gradientStrokeFill_1,
             borderWidth: 3,
@@ -968,7 +969,7 @@
           labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", "Day 11", "Day 12", "Day 13"],
           datasets: [{
             label: 'Profit',
-            data: [7, 6, 8, 5, 8, 6, 8, 7, 8, 6, 9, 7, 7],
+            data: daycouple_all,
             borderColor: '#6d7cfc',
             backgroundColor: gradientStrokeFill_1,
             borderWidth: 3,

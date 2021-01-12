@@ -1,16 +1,136 @@
 {% extends "adminBase.html" %}
 {% block content %}
     <title>회원 분석</title>
-		  <div class="col-lg-6 grid-margin stretch-card">
+		  <div class="col-lg-4 grid-margin stretch-card">
                 <div class="card">
                   <div class="p-4 pr-5 border-bottom bg-light d-flex justify-content-between">
-                    <h4 class="card-title mb-0">회원 성비</h4>
-                    <id id="pie-chart-legend" class="mr-4"></id>
+                    <h4 class="card-title mb-0">성별</h4>
                   </div>
                   <div class="card-body d-flex">
-                    <canvas class="my-auto" id="pieChart" height="130"></canvas>
+                    <div id="chart_donut1"></div>
                   </div>
                 </div>
-              </div>
+                <div class="card">
+                  <div class="p-4 pr-5 border-bottom bg-light d-flex justify-content-between">
+                    <h4 class="card-title mb-0">연령별</h4>
+                  </div>
+                  <div class="card-body d-flex">
+                    <div id="chart_donut2"></div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="p-4 pr-5 border-bottom bg-light d-flex justify-content-between">
+                    <h4 class="card-title mb-0">성별+연령별</h4>
+                  </div>
+                  <div class="card-body d-flex">
+                    <div id="chart_donut3"></div>
+                  </div>
+                </div>
+          </div>
+
+
+                    {% csrf_token %}
+                    <script>
+                        var chart1 = []
+                    </script>
+                    {% for gender,count in result1 %}
+                    <script>
+                        var x = '{{gender}}'
+                        var y = '{{count}}'
+                        chart1.push([x,y])
+                    </script>
+                    {% endfor %}
+                    <script>
+                        $(function(){
+                            var chartData=chart1
+                            var chart = c3.generate({
+                            bindto:'#chart_donut1',
+                                data:{
+                                    columns:chartData,
+                                    type:'pie'
+                                }
+
+                            });
+                        });
+                    </script>
+
+                    {% csrf_token %}
+                    <script>
+                        var chart2 = []
+                    </script>
+                    {% for age,n in result2 %}
+                    <script>
+                        var x = '{{age}}'
+                        var y = '{{n}}'
+                        chart2.push([x,y])
+                    </script>
+                    {% endfor %}
+                    <script>
+                        $(function(){
+                            var chartData=chart2
+                            var chart = c3.generate({
+                            bindto:'#chart_donut2',
+                                data:{
+                                    columns:chartData,
+                                    type:'bar'
+                                }
+
+                            });
+                        });
+                    </script>
+
+                    {% csrf_token %}
+                    <script>
+                        var chart3 = ['남성']
+                        var chart4 = ['여성']
+                        var age=[]
+                    </script>
+                    {% for age,n in result3 %}
+                    <script>
+                        var x = '{{age}}'
+                        var y = '{{n}}'
+                        age.push(x)
+                        chart3.push(y)
+                    </script>
+                    {% endfor %}
+
+                    {% for age,n in result4 %}
+                    <script>
+                        var x = '{{age}}'
+                        var y = '{{n}}'
+                        chart4.push(y)
+                    </script>
+                    {% endfor %}
+
+                    <script>
+                    $(function(){
+                        var chart = c3.generate({
+                            bindto:'#chart_donut3',
+                            data: {
+                                columns: [
+                                    chart3,
+                                    chart4
+                                ],
+                                type: 'bar'
+                            },
+                            axis: {
+                                    x: {
+                                      type: 'category',
+                                      categories: age,
+
+                                    },
+
+                                  },
+                            bar: {
+                                width: {
+                                    ratio: 0.5 // this makes bar width 50% of length between ticks
+                                }
+                                // or
+                                //width: 100 // this makes bar width 100px
+                            },
+
+                        });
+                    });
+                    </script>
 		  </div>
 {% endblock content %}

@@ -8,22 +8,39 @@
                     <table class="table table-striped">
                       <thead>
                         <tr>
-                          <th> 회원번호 </th>
+                          <th> 번호</th>
+                          <th> 이름 </th>
+                          <th> 성별 </th>
                           <th> 계정 </th>
                           <th> 연락처 </th>
                           <th> 가입일 </th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td> 1 </td>
-                          <td> <a href="Client_1_detail.html">kosmo@naver.com</a> </td>
-                          <td> 010-1234-5687 </td>
-                          <td> May 15, 2015 </td>
-                        </tr>
-                        
+                      {% for e in result %}
+								<tr>
+									<td>{{e.0}}</td>
+									<td>{{e.2}}</td>
+									<td>{{e.3}}</td>
+									<td>{{e.4}}</td>
+									<td>{{e.5}}</td>
+									<td>{{e.6|date:"Y-m-d"}}</td>
+								</tr>
+                      {% endfor %}
                       </tbody>
                     </table>
+                      <div style="display: block; text-align: center;">
+                          <script type="text/javascript">
+                          for (i = 1; i <= {{totalPage}}; i++) {
+                            if(i<={{page}}+5 && i>{{page}}-5 || i=={{totalPage}}|| i==1){
+                              document.write("<a href='Pay_0_list?page="+i+"'>"+i+"</a>&nbsp;");
+                            }
+                            else{
+                            document.write(".&nbsp;");
+                            }
+                          }
+                          </script>
+                      </div>
                   </div>
                 </div>
               </div>

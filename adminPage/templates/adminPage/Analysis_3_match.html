@@ -2,25 +2,102 @@
 
  <!-- Sidebar -->
 {% block content %}
-    <title>매칭 분석</title>
+    <title>좋아요 분석</title>
 		  <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="p-4 pr-5 border-bottom bg-light d-flex justify-content-between">
-                    <h4 class="card-title mb-0">매치 성공/실패 특성 차이</h4>
+                    <h4 class="card-title mb-0">좋아요 받은 회원/ 받지 못한 회원 차이</h4>
                     <div id="radar-chart-legend"></div>
                   </div>
                   <div class="card-body">
-                    <canvas class="mt-4" id="radarChart" style="height:250px"></canvas>
+                    <canvas class="mt-4" id="LikeChart" style="height:250px"></canvas>
                     <div class="d-flex mt-5 py-3 border-top">
-                      <p class="mb-0 font-weight-semibold"><span class="dot-indicator bg-success"></span> 매치 성사 커플 </p>
-                      <p class="mb-0 ml-auto text-primary">56%</p>
+                      <p class="mb-0 font-weight-semibold"><span class="dot-indicator bg-success"></span> 좋아요 받은 회원 비율 </p>
+                      <p class="mb-0 ml-auto text-primary">{{likereceiveRatio}}%</p>
                     </div>
                     <div class="d-flex pt-3 border-top">
-                      <p class="mb-0 font-weight-semibold"><span class="dot-indicator bg-success"></span> 매치 실패 커플</p>
-                      <p class="mb-0 ml-auto text-primary">34%</p>
+                      <p class="mb-0 font-weight-semibold"><span class="dot-indicator bg-success"></span> 좋아요 못 받은 회원 비율</p>
+                      <p class="mb-0 ml-auto text-primary">{{notlikereceiveRatio}}%</p>
                     </div>
                   </div>
                 </div>
               </div>
 		  </div>
+
+<script>
+        var likereceiveMean = ['{{likereceiveMean.age}}','{{likereceiveMean.education}}','{{likereceiveMean.height}}','{{likereceiveMean.bodyshape}}','{{likereceiveMean.drink}}','{{likereceiveMean.smoke}}']
+        var notlikereceiveMean= ['{{notlikereceiveMean.age}}','{{notlikereceiveMean.education}}','{{notlikereceiveMean.height}}','{{notlikereceiveMean.bodyshape}}','{{notlikereceiveMean.drink}}','{{notlikereceiveMean.smoke}}']
+</script>
+
+<script>
+$(function () {
+        if ($("#LikeChart").length) {
+            var marksCanvas = document.getElementById("LikeChart");
+            var marksData = {
+              labels: ["나이", "교육수준", "키", "체형", "주량", "흡연"],
+              datasets: [ {
+                label: "좋아요 못 받은 집단",
+                backgroundColor: ChartColor[1],
+                borderColor: ChartColor[1],
+                borderWidth: 0,
+                fill: false,
+                radius: 6,
+                pointRadius: 5,
+                pointBorderWidth: 0,
+                pointBackgroundColor: ChartColor[1],
+                pointHoverRadius: 10,
+                data: notlikereceiveMean
+              },{
+                label: "좋아요 받은 집단",
+                backgroundColor: ChartColor[0],
+                borderColor: ChartColor[0],
+                borderWidth: 0,
+                fill: false,
+                radius: 6,
+                pointRadius: 5,
+                pointBorderWidth: 0,
+                pointBackgroundColor: ChartColor[4],
+                pointHoverRadius: 10,
+                data: likereceiveMean
+              }]
+            };
+
+            var chartOptions = {
+              scale: {
+                ticks: {
+                  beginAtZero: true,
+                  min: 0,
+                  max: 1,
+                  stepSize: 0.1,
+                  display: false,
+                },
+                pointLabels: {
+                  fontSize: 14
+                }
+              },
+              legend: false,
+              legendCallback: function (chart) {
+                var text = [];
+                text.push('<div class="chartjs-legend"><ul>');
+                for (var i = 0; i < chart.data.datasets.length; i++) {
+                  console.log(chart.data.datasets[i]); // see what's inside the obj.
+                  text.push('<li>');
+                  text.push('<span style="background-color:' + chart.data.datasets[i].backgroundColor + '">' + '</span>');
+                  text.push(chart.data.datasets[i].label);
+                  text.push('</li>');
+                }
+                text.push('</ul></div>');
+                return text.join("");
+              },
+            };
+
+            var radarChart = new Chart(marksCanvas, {
+              type: 'radar',
+              data: marksData,
+              options: chartOptions
+            });
+            document.getElementById('radar-chart-legend').innerHTML = radarChart.generateLegend();
+          }
+  })
+  </script>
 {% endblock content %}

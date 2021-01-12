@@ -2,21 +2,164 @@
 
  <!-- Sidebar -->
 {% block content %}
-    <title>유입 분석</title>
+    <title>성별 유입 분석</title>
 
         <!-- partial -->
 		  <div class="row">
-              <div class="col-md-12 grid-margin">
+              <div class="col-lg-9 grid-margin stretch-card">
                 <div class="card">
                   <div class="p-4 border-bottom bg-light">
-                    <h4 class="card-title mb-0">유입 분석</h4>
+                    <h4 class="card-title mb-0">성별 유입 분석</h4>
                   </div>
                   <div class="card-body">
-                    <canvas id="mixed-chart" height="100"></canvas>
-                    <div class="mr-5" id="mixed-chart-legend"></div>
+                    <div class="d-flex justify-content-between align-items-center pb-4">
+                      <h4 class="card-title mb-0"></h4>
+                      <div id="stacked-bar-traffic-legend"></div>
+                    </div>
+                    <p class="mb-4"></p>
+                    <canvas id="signUpMonth" style="height:250px"></canvas>
                   </div>
                 </div>
               </div>
 		  </div>
           <!-- content-wrapper ends -->
+
+{% csrf_token %}
+    <script>
+        var monthMale = []
+        var monthFemale= []
+        var maleCnt=[]
+        var femaleCnt=[]
+    </script>
+    {% for month,cnt,gender in result %}
+    <script>
+        var x = '{{month}}'
+        var y = '{{cnt}}'
+        var z= '{{gender}}'
+        if(z=='남성'){
+            monthMale.push(x)
+            maleCnt.push(y)
+        }
+        else{
+            monthFemale.push(x)
+            femaleCnt.push(y)
+        }
+    </script>
+    {% endfor %}
+
+<script>
+    $(function () {
+        if ($("#signUpMonth").length) {
+        var stackedbarChartCanvas = $("#signUpMonth").get(0).getContext("2d");
+        var stackedbarChart = new Chart(stackedbarChartCanvas, {
+          type: 'bar',
+          data: {
+            labels: monthMale,
+            datasets: [{
+                label: "남성",
+                backgroundColor: ChartColor[0],
+                borderColor: ChartColor[0],
+                borderWidth: 1,
+                data: maleCnt
+              },
+              {
+                label: "여성",
+                backgroundColor: ChartColor[1],
+                borderColor: ChartColor[1],
+                borderWidth: 1,
+                data: femaleCnt
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            legend: false,
+            categoryPercentage: 0.5,
+            stacked: true,
+            layout: {
+              padding: {
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0
+              }
+            },
+            scales: {
+              xAxes: [{
+                display: true,
+                scaleLabel: {
+                  display: true,
+                  labelString: 'User by time',
+                  fontSize: 12,
+                  lineHeight: 2
+                },
+                ticks: {
+                  fontColor: '#bfccda',
+                  stepSize: 50,
+                  min: 0,
+                  max: 150,
+                  autoSkip: true,
+                  autoSkipPadding: 15,
+                  maxRotation: 0,
+                  maxTicksLimit: 10
+                },
+                gridLines: {
+                  display: false,
+                  drawBorder: false,
+                  color: 'transparent',
+                  zeroLineColor: '#eeeeee'
+                }
+              }],
+              yAxes: [{
+                display: true,
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of users',
+                  fontSize: 12,
+                  lineHeight: 2
+                },
+                ticks: {
+                  fontColor: '#bfccda',
+                  stepSize: 5,
+                  min: 0,
+                  max: Math.max.apply(null,maleCnt.concat(femaleCnt)),
+                  autoSkip: true,
+                  autoSkipPadding: 15,
+                  maxRotation: 0,
+                  maxTicksLimit: 10
+                },
+                gridLines: {
+                  drawBorder: false
+                }
+              }]
+            },
+            legend: {
+              display: false
+            },
+            legendCallback: function (chart) {
+              var text = [];
+              text.push('<div class="chartjs-legend"><ul>');
+              for (var i = 0; i < chart.data.datasets.length; i++) {
+                console.log(chart.data.datasets[i]); // see what's inside the obj.
+                text.push('<li>');
+                text.push('<span style="background-color:' + chart.data.datasets[i].backgroundColor + '">' + '</span>');
+                text.push(chart.data.datasets[i].label);
+                text.push('</li>');
+              }
+              text.push('</ul></div>');
+              return text.join("");
+            },
+            elements: {
+              point: {
+                radius: 0
+              }
+            }
+          }
+        });
+        document.getElementById('stacked-bar-traffic-legend').innerHTML = stackedbarChart.generateLegend();
+      }
+  });
+</script>
+
 {% endblock content %}

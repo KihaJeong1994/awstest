@@ -16,16 +16,25 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td> 1 </td>
-                          <td> 코스모 </td>
-                          <td>kosmo@naver.com</td>
-                          <td> 변태다 변태 </td>
-                          <td> May 15, 2015 </td>
-                        </tr>
+                      {% for e in result %}
+								<tr>
+									<td>{{e.0}}</td>
+									<td>{{e.2}}</td>
+									<td>{{e.3}}</td>
+									<td>{{e.4}}</td>
+									<td>{{e.5}}</td>
+								</tr>
+                      {% endfor %}
                         
                       </tbody>
                     </table>
+                      <div style="display: block; text-align: center;">
+                          <script type="text/javascript">
+                          for (i = 1; i <= {{totalPage}}; i++) {
+                            document.write("<a href='Client_2_blacklist?page="+i+"'>"+i+"</a>&nbsp;");
+                          }
+                          </script>
+                      </div>
                   </div>
                 </div>
               </div>

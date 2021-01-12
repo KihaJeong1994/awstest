@@ -2,115 +2,412 @@
 {% block content %}
 <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">간단 매출 장부</h4>
 
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th> User </th>
-                          <th> First name </th>
-                          <th> Progress </th>
-                          <th> Amount </th>
-                          <th> Deadline </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="py-1">
-                            <img src="../../../assets/images/faces-clipart/pic-1.png" alt="image" />
-                          </td>
-                          <td> Herman Beck </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          <td> $ 77.99 </td>
-                          <td> May 15, 2015 </td>
-                        </tr>
-                        <tr>
-                          <td class="py-1">
-                            <img src="../../../assets/images/faces-clipart/pic-2.png" alt="image" />
-                          </td>
-                          <td> Messsy Adam </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          <td> $245.30 </td>
-                          <td> July 1, 2015 </td>
-                        </tr>
-                        <tr>
-                          <td class="py-1">
-                            <img src="../../../assets/images/faces-clipart/pic-3.png" alt="image" />
-                          </td>
-                          <td> John Richards </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          <td> $138.00 </td>
-                          <td> Apr 12, 2015 </td>
-                        </tr>
-                        <tr>
-                          <td class="py-1">
-                            <img src="../../../assets/images/faces-clipart/pic-4.png" alt="image" />
-                          </td>
-                          <td> Peter Meggik </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          <td> $ 77.99 </td>
-                          <td> May 15, 2015 </td>
-                        </tr>
-                        <tr>
-                          <td class="py-1">
-                            <img src="../../../assets/images/faces-clipart/pic-1.png" alt="image" />
-                          </td>
-                          <td> Edward </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          <td> $ 160.25 </td>
-                          <td> May 03, 2015 </td>
-                        </tr>
-                        <tr>
-                          <td class="py-1">
-                            <img src="../../../assets/images/faces-clipart/pic-2.png" alt="image" />
-                          </td>
-                          <td> John Doe </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          <td> $ 123.21 </td>
-                          <td> April 05, 2015 </td>
-                        </tr>
-                        <tr>
-                          <td class="py-1">
-                            <img src="../../../assets/images/faces-clipart/pic-3.png" alt="image" />
-                          </td>
-                          <td> Henry Tom </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          <td> $ 150.00 </td>
-                          <td> June 16, 2015 </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                </div>
+              </div>
+		  </div>
+
+         <!-- partial -->
+		  <div class="row">
+              <div class="col-md-12 grid-margin">
+                <div class="card">
+                  <div class="p-4 border-bottom bg-light">
+                    <h4 class="card-title mb-0">매출 분석</h4>
+                    <div class="btn-group" role="group" aria-label="First group">
+                      <button type="button" class="btn btn-light daysales">일 매출</button>
+                      <button type="button" class="btn btn-light monthsales">월 매출</button>
+                      <button type="button" class="btn btn-light yearsales">연 매출</button>
+                    </div>
+                  </div>
+                  <div class="card-body daychart">
+                    <canvas id="sales_chart_day" height="100"></canvas>
+                    <div class="mr-5" id="line-traffic-legend"></div>
+                  </div>
+                  <div class="card-body monthchart">
+                    <canvas id="sales_chart_month" height="100"></canvas>
+                    <div class="mr-5" id="line-traffic-legend1"></div>
+                  </div>
+                  <div class="card-body yearchart">
+                    <canvas id="sales_chart_year" height="100"></canvas>
+                    <div class="mr-5" id="line-traffic-legend2"></div>
                   </div>
                 </div>
               </div>
 		  </div>
+
+
+   {% csrf_token %}
+    <script>
+        var days = []
+        var daysales_all=[]
+    </script>
+    {% for day,daysales in resultDay %}
+    <script>
+        var x = '{{day}}'
+        var y = '{{daysales}}'
+        days.push(x)
+        daysales_all.push(y)
+    </script>
+    {% endfor %}
+
+    {% csrf_token %}
+    <script>
+        var months = []
+        var monthsales_all=[]
+    </script>
+    {% for month,monthsales in resultMonth %}
+    <script>
+        var x = '{{month}}'
+        var y = '{{monthsales}}'
+        months.push(x)
+        monthsales_all.push(y)
+    </script>
+    {% endfor %}
+
+    {% csrf_token %}
+    <script>
+        var years = []
+        var yearsales_all=[]
+    </script>
+    {% for year,yearsales in resultYear %}
+    <script>
+        var x = '{{year}}'
+        var y = '{{yearsales}}'
+        years.push(x)
+        yearsales_all.push(y)
+    </script>
+    {% endfor %}
+
+<script>
+  $('.daysales').click(function(){
+    $('.card-body').hide()
+    $('.daychart').show()
+  })
+  $('.monthsales').click(function(){
+    $('.card-body').hide()
+    $('.monthchart').show()
+  })
+  $('.yearsales').click(function(){
+    $('.card-body').hide()
+    $('.yearchart').show()
+  })
+
+
+
+  $(function () {
+      $('.card-body').hide()
+      $('.daychart').show()
+      /* ChartJS */
+      'use strict';
+      if ($("#sales_chart_day").length) {
+      var lineData = {
+        labels: days,
+        datasets: [{
+          data: daysales_all,
+          backgroundColor: ChartColor[0],
+          borderColor: ChartColor[0],
+          borderWidth: 3,
+          fill: 'false',
+          label: "Sales"
+        }]
+      };
+      var lineOptions = {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          filler: {
+            propagate: false
+          }
+        },
+        scales: {
+          xAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: '일 매출',
+              fontSize: 12,
+              lineHeight: 2
+            },
+            ticks: {
+              fontColor: '#212229',
+              stepSize: 50,
+              min: 0,
+              max: 150,
+              autoSkip: true,
+              autoSkipPadding: 15,
+              maxRotation: 0,
+              maxTicksLimit: 10
+            },
+            gridLines: {
+              display: false,
+              drawBorder: false,
+              color: 'transparent',
+              zeroLineColor: '#eeeeee'
+            }
+          }],
+          yAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Number of sales',
+              fontSize: 12,
+              lineHeight: 2
+            },
+            ticks: {
+              fontColor: '#212229',
+              display: true,
+              autoSkip: false,
+              maxRotation: 0,
+              stepSize: Math.max.apply(null,daysales_all)/10,
+              min: Math.min.apply(null,daysales_all)*0.9,
+              max: Math.round(Math.max.apply(null,daysales_all)*1.1)
+            },
+            gridLines: {
+              drawBorder: false
+            }
+          }]
+        },
+        legend: {
+          display: false
+        },
+        legendCallback: function (chart) {
+          var text = [];
+          text.push('<div class="chartjs-legend"><ul>');
+          for (var i = 0; i < chart.data.datasets.length; i++) {
+            console.log(chart.data.datasets[i]); // see what's inside the obj.
+            text.push('<li>');
+            text.push('<span style="background-color:' + chart.data.datasets[i].borderColor + '">' + '</span>');
+            text.push(chart.data.datasets[i].label);
+            text.push('</li>');
+          }
+          text.push('</ul></div>');
+          return text.join("");
+        },
+        elements: {
+          line: {
+            tension: 0
+          },
+          point: {
+            radius: 0
+          }
+        }
+      }
+      var lineChartCanvas = $("#sales_chart_day").get(0).getContext("2d");
+      var lineChart = new Chart(lineChartCanvas, {
+        type: 'line',
+        data: lineData,
+        options: lineOptions
+      });
+      document.getElementById('line-traffic-legend').innerHTML = lineChart.generateLegend();
+    }
+
+    if ($("#sales_chart_month").length) {
+      var lineData = {
+        labels: months,
+        datasets: [{
+          data: monthsales_all,
+          backgroundColor: ChartColor[0],
+          borderColor: ChartColor[0],
+          borderWidth: 3,
+          fill: 'false',
+          label: "Sales"
+        }]
+      };
+      var lineOptions = {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          filler: {
+            propagate: false
+          }
+        },
+        scales: {
+          xAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: '월 매출',
+              fontSize: 12,
+              lineHeight: 2
+            },
+            ticks: {
+              fontColor: '#212229',
+              stepSize: 50,
+              min: 0,
+              max: 150,
+              autoSkip: true,
+              autoSkipPadding: 15,
+              maxRotation: 0,
+              maxTicksLimit: 10
+            },
+            gridLines: {
+              display: false,
+              drawBorder: false,
+              color: 'transparent',
+              zeroLineColor: '#eeeeee'
+            }
+          }],
+          yAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Number of sales',
+              fontSize: 12,
+              lineHeight: 2
+            },
+            ticks: {
+              fontColor: '#212229',
+              display: true,
+              autoSkip: false,
+              maxRotation: 0,
+              stepSize: Math.max.apply(null,monthsales_all)/10,
+              min: Math.min.apply(null,monthsales_all)*0.9,
+              max: Math.round(Math.max.apply(null,monthsales_all)*1.1)
+            },
+            gridLines: {
+              drawBorder: false
+            }
+          }]
+        },
+        legend: {
+          display: false
+        },
+        legendCallback: function (chart) {
+          var text = [];
+          text.push('<div class="chartjs-legend"><ul>');
+          for (var i = 0; i < chart.data.datasets.length; i++) {
+            console.log(chart.data.datasets[i]); // see what's inside the obj.
+            text.push('<li>');
+            text.push('<span style="background-color:' + chart.data.datasets[i].borderColor + '">' + '</span>');
+            text.push(chart.data.datasets[i].label);
+            text.push('</li>');
+          }
+          text.push('</ul></div>');
+          return text.join("");
+        },
+        elements: {
+          line: {
+            tension: 0
+          },
+          point: {
+            radius: 0
+          }
+        }
+      }
+      var lineChartCanvas = $("#sales_chart_month").get(0).getContext("2d");
+      var lineChart = new Chart(lineChartCanvas, {
+        type: 'line',
+        data: lineData,
+        options: lineOptions
+      });
+      document.getElementById('line-traffic-legend1').innerHTML = lineChart.generateLegend();
+    }
+
+    if ($("#sales_chart_year").length) {
+      var lineData = {
+        labels: years,
+        datasets: [{
+          data: yearsales_all,
+          backgroundColor: ChartColor[0],
+          borderColor: ChartColor[0],
+          borderWidth: 3,
+          fill: 'false',
+          label: "Sales"
+        }]
+      };
+      var lineOptions = {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          filler: {
+            propagate: false
+          }
+        },
+        scales: {
+          xAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: '연 매출',
+              fontSize: 12,
+              lineHeight: 2
+            },
+            ticks: {
+              fontColor: '#212229',
+              stepSize: 50,
+              min: 0,
+              max: 150,
+              autoSkip: true,
+              autoSkipPadding: 15,
+              maxRotation: 0,
+              maxTicksLimit: 10
+            },
+            gridLines: {
+              display: false,
+              drawBorder: false,
+              color: 'transparent',
+              zeroLineColor: '#eeeeee'
+            }
+          }],
+          yAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Number of sales',
+              fontSize: 12,
+              lineHeight: 2
+            },
+            ticks: {
+              fontColor: '#212229',
+              display: true,
+              autoSkip: false,
+              maxRotation: 0,
+              stepSize: Math.max.apply(null,yearsales_all)/10,
+              min: Math.min.apply(null,yearsales_all)*0.9,
+              max: Math.round(Math.max.apply(null,yearsales_all)*1.1)
+            },
+            gridLines: {
+              drawBorder: false
+            }
+          }]
+        },
+        legend: {
+          display: false
+        },
+        legendCallback: function (chart) {
+          var text = [];
+          text.push('<div class="chartjs-legend"><ul>');
+          for (var i = 0; i < chart.data.datasets.length; i++) {
+            console.log(chart.data.datasets[i]); // see what's inside the obj.
+            text.push('<li>');
+            text.push('<span style="background-color:' + chart.data.datasets[i].borderColor + '">' + '</span>');
+            text.push(chart.data.datasets[i].label);
+            text.push('</li>');
+          }
+          text.push('</ul></div>');
+          return text.join("");
+        },
+        elements: {
+          line: {
+            tension: 0
+          },
+          point: {
+            radius: 0
+          }
+        }
+      }
+      var lineChartCanvas = $("#sales_chart_year").get(0).getContext("2d");
+      var lineChart = new Chart(lineChartCanvas, {
+        type: 'line',
+        data: lineData,
+        options: lineOptions
+      });
+      document.getElementById('line-traffic-legend2').innerHTML = lineChart.generateLegend();
+    }
+  });
+
+</script>
+
+
+
 {% endblock content %}

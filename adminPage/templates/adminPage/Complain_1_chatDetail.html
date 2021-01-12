@@ -1,0 +1,33 @@
+{% extends "adminBase.html" %}
+{% block content %}
+<div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">상세 보기</h4>
+                  <table class="table">
+                    <thead>
+                      {% for e in result %}
+                      <tr>
+                        <th>제목</th><th>{{e.1}}</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>신고대상</td> <td>{{e.5}}</td></tr>
+                      <tr>
+                        <td>내용</td>
+                        <td><textarea style="border: none; width: 500px; height: 100px;" readonly >{{e.4}}</textarea></td>
+                      </tr>
+                      <tr><td>작성자</td> <td>{{e.2}}</td></tr>
+                      <tr><td>작성일</td> <td>{{e.3}}</td></tr>
+                      {% endfor %}
+
+                    </tbody>
+                  </table>
+
+                </div>
+                <button type="button" class="btn btn-primary btn-md" onClick="location.href='blackList_1_insert?email={{result.0.5}}'">신고 접수</button>
+              </div>
+            </div>
+          </div>
+{% endblock content %}

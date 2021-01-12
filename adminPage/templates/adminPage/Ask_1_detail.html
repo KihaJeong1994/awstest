@@ -6,23 +6,28 @@
                   <h4 class="card-title">상세 보기</h4>
                   <table class="table">
                     <thead>
+                      {% for e in result %}
                       <tr>
-                        <th>제목</th><th>계정 삭제는 어떻게 하나요?</th>
+                        <th>제목</th><th>{{e.1}}</th>
 
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td>내용</td>
-                        <td><textarea style="border: none; width: 500px; height: 100px;" readonly >이제 나가려고 합니다 ting.... 빡칩니다..ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</textarea></td>
+                        <td><textarea style="border: none; width: 500px; height: 100px;" readonly >{{e.4}}</textarea></td>
                       </tr>
-                      <tr><td>작성자</td> <td>홍길동</td></tr>
-                      <tr><td>작성일</td> <td>20.12.02</td></tr>
+                      <tr><td>작성자</td> <td>{{e.2}}</td></tr>
+                      <tr><td>작성일</td> <td>{{e.3}}</td></tr>
+                      {% endfor %}
+
 
 
                     </tbody>
                   </table>
                 </div>
+
+                <button type="button" class="btn btn-primary btn-md" onClick="location.href='qna_reply?email={{result.0.5}}'">답변 작성</button>
               </div>
             </div>
           </div>

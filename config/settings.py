@@ -25,28 +25,20 @@ SECRET_KEY = '=$e3wbehdtb)04qs*m7a8)&n_a_)3@whbo=+s*%((agl-j#o-8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.11','127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'address',
-    'survey',
-    'toyPrj',
-    'web1',
-    'login',
-    'fileup',
-    'testProduct',
-    'makgeolli',
-    'wordcnt',
     'adminPage',
 ]
 
@@ -129,3 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CRONJOBS = [
+    ('12 17 * * *', 'adminPage.models.idealRecommendation'),
+]

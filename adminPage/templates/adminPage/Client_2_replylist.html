@@ -1,0 +1,42 @@
+{% extends "adminBase.html" %}
+{% block content %}
+		  <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">답변리스트</h4>
+                    
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th> 번호 </th>
+                          <th> 이름 </th>
+                          <th> 계정 </th>
+                          <th> 답변 </th>
+                          <th> 답변 일 </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for e in result %}
+								<tr>
+									<td>{{e.0}}</td>
+									<td>{{e.2}}</td>
+									<td>{{e.3}}</td>
+									<td>{{e.4}}</td>
+									<td>{{e.5}}</td>
+								</tr>
+                      {% endfor %}
+                        
+                      </tbody>
+                    </table>
+                      <div style="display: block; text-align: center;">
+                          <script type="text/javascript">
+                          for (i = 1; i <= {{totalPage}}; i++) {
+                            document.write("<a href='Client_2_blacklist?page="+i+"'>"+i+"</a>&nbsp;");
+                          }
+                          </script>
+                      </div>
+                  </div>
+                </div>
+              </div>
+		  </div>
+{% endblock content %}
